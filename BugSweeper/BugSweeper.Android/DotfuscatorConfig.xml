@@ -33,6 +33,11 @@
   </output>
   <renaming>
     <option>xmlserialization</option>
+    <excludelist>
+      <type name="BugSweeper.BugSweeperPage" excludetype="false">
+        <method name="OnMainContentViewSizeChanged" signature="void(object, System.EventArgs)" />
+      </type>
+    </excludelist>
     <mapping>
       <mapoutput overwrite="true">
         <file dir="${configdir}\${ReportDir}" name="Renaming.xml" />
