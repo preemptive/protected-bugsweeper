@@ -26,3 +26,11 @@ None yet!
 # Targets file path
 
 `C:\code\BugSweeper\PreEmptive.Dotfuscator.Xamarin.targets`
+
+# Currently protecting
+
+`BugSweeper.Android` project
+
+* Project directory: `C:\code\BugSweeper\BugSweeper\BugSweeper.Android`
+* Project file: `C:\code\BugSweeper\BugSweeper\BugSweeper.Android\BugSweeper.Android.csproj`
+* Relative path to targets file: `..\..\PreEmptive.Dotfuscator.Xamarin.targets`
