@@ -1,3 +1,14 @@
+This is an example repository that demonstrates setting up the Dotfuscator-Xamarin integration
+described here: <https://www.preemptive.com/obfuscating-xamarin-with-dotfuscator>.
+
+You can step through this repository's history to see how we set up Dotfuscator's protection
+in an existing Xamarin app. Notes that we took along the way can be found in DotfuscatorNotes.txt.
+
+Original README from the Xamarin app follows.
+You can download the original app from <https://developer.xamarin.com/samples/xamarin-forms/BugSweeper/>.
+
+----------------------------------
+
 BugSweeper
 ======
 
