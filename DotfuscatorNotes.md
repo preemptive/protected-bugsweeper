@@ -21,3 +21,8 @@ We're using Dotfuscator Professional Edition 4.28.2:
   
 # Protected projects and configurations
 
+None yet!
+
+# Targets file path
+
+`C:\code\BugSweeper\PreEmptive.Dotfuscator.Xamarin.targets`
