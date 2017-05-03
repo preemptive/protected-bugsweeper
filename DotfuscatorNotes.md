@@ -25,3 +25,11 @@ We're using Dotfuscator Professional Edition 4.28.2:
 # Targets file path
 
 `C:\code\BugSweeper\PreEmptive.Dotfuscator.Xamarin.targets`
+
+# Currently protecting
+
+`BugSweeper.UWP` project
+
+* Project directory: `C:\code\BugSweeper\BugSweeper\BugSweeper.UWP`
+* Project file: `C:\code\BugSweeper\BugSweeper\BugSweeper.UWP\BugSweeper.UWP.csproj`
+* Relative path to targets file: `..\..\PreEmptive.Dotfuscator.Xamarin.targets`
