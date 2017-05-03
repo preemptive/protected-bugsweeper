@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    
+    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.28.2\dotfuscator.exe</DotfuscatorXamarinCliPath>
+    <DotfuscatorXamarinConfigFileName>DotfuscatorConfig.xml</DotfuscatorXamarinConfigFileName>
+    <DotfuscatorXamarinGenerateNewConfigFile>false</DotfuscatorXamarinGenerateNewConfigFile>
+    
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2ECE01CE-B0FD-4D55-B92F-6A299528748E}</ProjectGuid>
@@ -40,6 +45,9 @@
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+
+    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
+    
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -138,6 +146,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DotfuscatorConfig.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -157,4 +168,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\..\PreEmptive.Dotfuscator.Xamarin.targets"/>
 </Project>
