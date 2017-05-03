@@ -10,8 +10,7 @@ We're using Dotfuscator Professional Edition 4.28.2:
 
 # Projects and configurations to protect
 
-* `BugSweeper.UWP` project
-  * *Release* configuration
+None. Everything we want to protect is protected!
   
 # Protected projects and configurations
 
@@ -21,15 +20,9 @@ We're using Dotfuscator Professional Edition 4.28.2:
   * *Release* configuration
   * *Ad-Hoc* configuration
   * *AppStore* configuration
+* `BugSweeper.UWP` project
+  * *Release* configuration
 
 # Targets file path
 
 `C:\code\BugSweeper\PreEmptive.Dotfuscator.Xamarin.targets`
-
-# Currently protecting
-
-`BugSweeper.UWP` project
-
-* Project directory: `C:\code\BugSweeper\BugSweeper\BugSweeper.UWP`
-* Project file: `C:\code\BugSweeper\BugSweeper\BugSweeper.UWP\BugSweeper.UWP.csproj`
-* Relative path to targets file: `..\..\PreEmptive.Dotfuscator.Xamarin.targets`
