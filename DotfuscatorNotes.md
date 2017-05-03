@@ -10,8 +10,6 @@ We're using Dotfuscator Professional Edition 4.28.2:
 
 # Projects and configurations to protect
 
-* `BugSweeper.Android` project
-  * *Release* configuration
 * `BugSweeper.iOS` project
   * *Release* configuration
   * *Ad-Hoc* configuration
@@ -21,16 +19,9 @@ We're using Dotfuscator Professional Edition 4.28.2:
   
 # Protected projects and configurations
 
-None yet!
+* `BugSweeper.Android` project
+  * *Release* configuration
 
 # Targets file path
 
 `C:\code\BugSweeper\PreEmptive.Dotfuscator.Xamarin.targets`
-
-# Currently protecting
-
-`BugSweeper.Android` project
-
-* Project directory: `C:\code\BugSweeper\BugSweeper\BugSweeper.Android`
-* Project file: `C:\code\BugSweeper\BugSweeper\BugSweeper.Android\BugSweeper.Android.csproj`
-* Relative path to targets file: `..\..\PreEmptive.Dotfuscator.Xamarin.targets`
