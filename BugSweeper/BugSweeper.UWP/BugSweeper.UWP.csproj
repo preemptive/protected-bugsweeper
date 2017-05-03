@@ -36,6 +36,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+
+    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
+
     <OutputPath>bin\ARM\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
@@ -59,6 +62,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+
+    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
+
     <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
@@ -82,6 +88,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+
+    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
+    
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
