@@ -26,8 +26,8 @@ namespace BugSweeper
 
         static Tile()
         {
-            flagImageSource = ImageSource.FromResource("BugSweeper.Images.Xamarin120.png");
-            bugImageSource = ImageSource.FromResource("BugSweeper.Images.RedBug.png");
+            flagImageSource = ImageSource.FromResource("BugSweeper.Images.Xamarin120.png", typeof(Tile));
+            bugImageSource = ImageSource.FromResource("BugSweeper.Images.RedBug.png", typeof(Tile));
         }
 
         public Tile(int row, int col)

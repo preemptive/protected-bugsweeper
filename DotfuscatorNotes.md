@@ -10,8 +10,7 @@ We're using Dotfuscator Professional Edition 4.28.2:
 
 # Projects and configurations to protect
 
-* `BugSweeper.UWP` project
-  * *Release* configuration
+None. Everything we want to protect is protected!
   
 # Protected projects and configurations
 
@@ -21,6 +20,8 @@ We're using Dotfuscator Professional Edition 4.28.2:
   * *Release* configuration
   * *Ad-Hoc* configuration
   * *AppStore* configuration
+* `BugSweeper.UWP` project
+  * *Release* configuration
 
 # Targets file path
 
