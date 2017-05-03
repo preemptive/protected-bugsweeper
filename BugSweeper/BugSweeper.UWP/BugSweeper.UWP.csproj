@@ -146,4 +146,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\..\PreEmptive.Dotfuscator.Xamarin.targets"/>
 </Project>
