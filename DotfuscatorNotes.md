@@ -10,10 +10,6 @@ We're using Dotfuscator Professional Edition 4.28.2:
 
 # Projects and configurations to protect
 
-* `BugSweeper.iOS` project
-  * *Release* configuration
-  * *Ad-Hoc* configuration
-  * *AppStore* configuration
 * `BugSweeper.UWP` project
   * *Release* configuration
   
@@ -21,6 +17,10 @@ We're using Dotfuscator Professional Edition 4.28.2:
 
 * `BugSweeper.Android` project
   * *Release* configuration
+* `BugSweeper.iOS` project
+  * *Release* configuration
+  * *Ad-Hoc* configuration
+  * *AppStore* configuration
 
 # Targets file path
 
