@@ -70,6 +70,9 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+
+    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
+    
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
     <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
