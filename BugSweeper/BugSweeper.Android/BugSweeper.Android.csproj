@@ -4,7 +4,7 @@
     
     <DotfuscatorXamarinCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.28.2\dotfuscator.exe</DotfuscatorXamarinCliPath>
     <DotfuscatorXamarinConfigFileName>DotfuscatorConfig.xml</DotfuscatorXamarinConfigFileName>
-    <DotfuscatorXamarinGenerateNewConfigFile>true</DotfuscatorXamarinGenerateNewConfigFile>
+    <DotfuscatorXamarinGenerateNewConfigFile>false</DotfuscatorXamarinGenerateNewConfigFile>
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
