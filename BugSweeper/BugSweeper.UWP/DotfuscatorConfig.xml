@@ -33,6 +33,24 @@
   </output>
   <renaming>
     <option>xmlserialization</option>
+    <excludelist>
+      <type name="BugSweeper.BugSweeperPage">
+        <comment>Select, but do not exclude from renaming, the type BugSweeper.BugSweeperPage.</comment>
+        <method name="On.*" regex="true">
+          <comment>Exclude methods whose names begin with "On".</comment>
+        </method>
+        <field name=".*" signature="Xamarin\.Forms\..*" regex="true">
+          <comment>Exclude fields whose type is in the Xamarin.Forms namespace.</comment>
+        </field>
+      </type>
+      <type name="BugSweeper.Board" excludetype="false">
+        <propertymember name="BugCount" />
+        <propertymember name="FlaggedTileCount" />
+      </type>
+      <type name="BugSweeper.BugSweeperPage" excludetype="false">
+        <field name="board" signature="BugSweeper.Board" />
+      </type>
+    </excludelist>
     <mapping>
       <mapoutput overwrite="true">
         <file dir="${configdir}\${ReportDir}" name="Renaming.xml" />
