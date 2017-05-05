@@ -26,6 +26,13 @@
         <option>transformxaml</option>
         <file dir="${configdir}\${InDir}" name="BugSweeper.WinUniversal.exe" />
       </inputassembly>
+      <inputassembly refid="d433b9d0-9b57-48e4-995b-a92890c14e85">
+        <option>honoroas</option>
+        <option>stripoa</option>
+        <option>library</option>
+        <option>transformxaml</option>
+        <file dir="${configdir}\${InDir}" name="BugSweeperTile.dll" />
+      </inputassembly>
     </asmlist>
   </input>
   <output>

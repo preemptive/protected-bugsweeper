@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{853D3300-5056-4005-9E71-E5D933889581}</ProjectGuid>
+    <ProjectGuid>{8389DDB5-ACDA-412E-8FFA-558CD4E4B710}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BugSweeper</RootNamespace>
-    <AssemblyName>BugSweeper</AssemblyName>
+    <RootNamespace>BugSweeperTile</RootNamespace>
+    <AssemblyName>BugSweeperTile</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -34,18 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="App.cs" />
-    <Compile Include="Board.cs" />
-    <Compile Include="BugSweeperPage.xaml.cs">
-      <DependentUpon>BugSweeperPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BugSweeperPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Xamarin120.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\RedBug.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -71,12 +67,6 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.224\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BugSweeperTile\BugSweeperTile.csproj">
-      <Project>{8389ddb5-acda-412e-8ffa-558cd4e4b710}</Project>
-      <Name>BugSweeperTile</Name>
-    </ProjectReference>
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -26,6 +26,13 @@
         <option>transformxaml</option>
         <file dir="${configdir}\${InDir}" name="BugSweeper.Android.dll" />
       </inputassembly>
+      <inputassembly refid="f34a49b9-2c20-44c4-aedd-0ade02f45fe0">
+        <option>honoroas</option>
+        <option>stripoa</option>
+        <option>library</option>
+        <option>transformxaml</option>
+        <file dir="${configdir}\${InDir}" name="BugSweeperTile.dll" />
+      </inputassembly>
     </asmlist>
   </input>
   <output>

@@ -26,6 +26,13 @@
         <option>transformxaml</option>
         <file dir="${configdir}\${InDir}" name="BugSweeper.iOS.exe" />
       </inputassembly>
+      <inputassembly refid="b447617f-181c-470d-a33e-e5a9d8806cd7">
+        <option>honoroas</option>
+        <option>stripoa</option>
+        <option>library</option>
+        <option>transformxaml</option>
+        <file dir="${configdir}\${InDir}" name="BugSweeperTile.dll" />
+      </inputassembly>
     </asmlist>
   </input>
   <output>
