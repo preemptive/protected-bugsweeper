@@ -6,14 +6,14 @@ using Xamarin.Forms;
 
 namespace BugSweeper
 {
-    enum TileStatus
+    public enum TileStatus
     {
         Hidden,
         Flagged,
         Exposed
     }
 
-    class Tile : Frame
+    public class Tile : Frame
     {
         TileStatus tileStatus = TileStatus.Hidden;
         Label label;
@@ -26,8 +26,8 @@ namespace BugSweeper
 
         static Tile()
         {
-            flagImageSource = ImageSource.FromResource("BugSweeper.Images.Xamarin120.png", typeof(Tile));
-            bugImageSource = ImageSource.FromResource("BugSweeper.Images.RedBug.png", typeof(Tile));
+            flagImageSource = ImageSource.FromResource("BugSweeperTile.Images.Xamarin120.png", typeof(Tile));
+            bugImageSource = ImageSource.FromResource("BugSweeperTile.Images.RedBug.png", typeof(Tile));
         }
 
         public Tile(int row, int col)
