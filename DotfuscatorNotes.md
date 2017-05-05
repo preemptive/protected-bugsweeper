@@ -26,3 +26,7 @@ None. Everything we want to protect is protected!
 # Targets file path
 
 `C:\code\BugSweeper\PreEmptive.Dotfuscator.Xamarin.targets`
+
+# Dotfuscator input directories
+
+Android: `C:\code\BugSweeper\BugSweeper\BugSweeper.Android\obj\Release\DotfuscatorXamarin\dfin`
