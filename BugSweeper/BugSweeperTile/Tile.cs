@@ -6,14 +6,14 @@ using Xamarin.Forms;
 
 namespace BugSweeper
 {
-    enum TileStatus
+    public enum TileStatus
     {
         Hidden,
         Flagged,
         Exposed
     }
 
-    class Tile : Frame
+    public class Tile : Frame
     {
         TileStatus tileStatus = TileStatus.Hidden;
         Label label;
@@ -26,8 +26,8 @@ namespace BugSweeper
 
         static Tile()
         {
-            flagImageSource = ImageSource.FromResource("BugSweeper.Images.Xamarin120.png");
-            bugImageSource = ImageSource.FromResource("BugSweeper.Images.RedBug.png");
+            flagImageSource = ImageSource.FromResource("BugSweeperTile.Images.Xamarin120.png", typeof(Tile));
+            bugImageSource = ImageSource.FromResource("BugSweeperTile.Images.RedBug.png", typeof(Tile));
         }
 
         public Tile(int row, int col)
@@ -36,10 +36,11 @@ namespace BugSweeper
             this.Col = col;
 
             this.BackgroundColor = Color.Yellow;
-            this.OutlineColor = Color.Blue;
+            this.BorderColor = Color.Blue;
             this.Padding = 2;
 
-            label = new Label {
+            label = new Label
+            {
                 Text = " ",
                 TextColor = Color.Yellow,
                 BackgroundColor = Color.Blue,
@@ -47,16 +48,19 @@ namespace BugSweeper
                 VerticalTextAlignment = TextAlignment.Center,
             };
 
-            flagImage = new Image {
+            flagImage = new Image
+            {
                 Source = flagImageSource,
 
             };
 
-            bugImage = new Image {
+            bugImage = new Image
+            {
                 Source = bugImageSource
             };
 
-            TapGestureRecognizer singleTap = new TapGestureRecognizer {
+            TapGestureRecognizer singleTap = new TapGestureRecognizer
+            {
                 NumberOfTapsRequired = 1
             };
             singleTap.Tapped += OnSingleTap;
@@ -64,11 +68,13 @@ namespace BugSweeper
 
 #if FIX_UWP_DOUBLE_TAPS
 
-            if (Device.RuntimePlatform != Device.UWP) {
+            if (Device.RuntimePlatform != Device.UWP)
+            {
 
 #endif
 
-                TapGestureRecognizer doubleTap = new TapGestureRecognizer {
+                TapGestureRecognizer doubleTap = new TapGestureRecognizer
+                {
                     NumberOfTapsRequired = 2
                 };
                 doubleTap.Tapped += OnDoubleTap;
@@ -90,18 +96,23 @@ namespace BugSweeper
 
         public int SurroundingBugCount { set; get; }
 
-        public TileStatus Status {
-            set {
-                if (tileStatus != value) {
+        public TileStatus Status
+        {
+            set
+            {
+                if (tileStatus != value)
+                {
                     tileStatus = value;
 
-                    switch (tileStatus) {
+                    switch (tileStatus)
+                    {
                         case TileStatus.Hidden:
                             this.Content = null;
 
 #if FIX_UWP_NULL_CONTENT
 
-                            if (Device.RuntimePlatform == Device.UWP) {
+                            if (Device.RuntimePlatform == Device.UWP)
+                            {
                                 this.Content = new Label { Text = " " };
                             }
 
@@ -113,9 +124,12 @@ namespace BugSweeper
                             break;
 
                         case TileStatus.Exposed:
-                            if (this.IsBug) {
+                            if (this.IsBug)
+                            {
                                 this.Content = bugImage;
-                            } else {
+                            }
+                            else
+                            {
                                 this.Content = label;
                                 label.Text =
                                         (this.SurroundingBugCount > 0) ?
@@ -124,12 +138,14 @@ namespace BugSweeper
                             break;
                     }
 
-                    if (!doNotFireEvent && TileStatusChanged != null) {
+                    if (!doNotFireEvent && TileStatusChanged != null)
+                    {
                         TileStatusChanged(this, tileStatus);
                     }
                 }
             }
-            get {
+            get
+            {
                 return tileStatus;
             }
         }
@@ -156,34 +172,39 @@ namespace BugSweeper
 
 #if FIX_UWP_DOUBLE_TAPS
 
-            if (Device.RuntimePlatform == Device.UWP) {
-                if (lastTapSingle && DateTime.Now - lastTapTime < TimeSpan.FromMilliseconds (500)) {
-                    OnDoubleTap (sender, args);
+            if (Device.RuntimePlatform == Device.UWP)
+            {
+                if (lastTapSingle && DateTime.Now - lastTapTime < TimeSpan.FromMilliseconds(500))
+                {
+                    OnDoubleTap(sender, args);
                     lastTapSingle = false;
-                } else {
+                }
+                else
+                {
                     lastTapTime = DateTime.Now;
                     lastTapSingle = true;
                 }
-        	}
+            }
 
 #endif
 
-            switch (this.Status) {
-            case TileStatus.Hidden:
-                this.Status = TileStatus.Flagged;
-                break;
+            switch (this.Status)
+            {
+                case TileStatus.Hidden:
+                    this.Status = TileStatus.Flagged;
+                    break;
 
-            case TileStatus.Flagged:
-                this.Status = TileStatus.Hidden;
-                break;
+                case TileStatus.Flagged:
+                    this.Status = TileStatus.Hidden;
+                    break;
 
-            case TileStatus.Exposed:
+                case TileStatus.Exposed:
                     // Do nothing
-                break;
+                    break;
             }
         }
 
-        void OnDoubleTap (object sender, object args)
+        void OnDoubleTap(object sender, object args)
         {
             this.Status = TileStatus.Exposed;
         }
