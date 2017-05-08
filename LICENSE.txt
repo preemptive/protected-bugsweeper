@@ -1,6 +1,13 @@
 Copyright (c) 2017 PreEmptive Solutions, LLC
 Portions Copyright (c) 2011 Xamarin Inc
 
+The majority of this repository, including all material specifically derived
+from the Xamarin BugSweeper sample, is licensed by the Apache License 2.0,
+which is listed below. However, the Dotfuscator-Xamarin MSBuild targets file,
+PreEmptive.Dotfuscator.Xamarin.targets, is instead licensed under the 
+PreEmptive Solutions End User License Agreement, which can be found at
+<https://www.preemptive.com/eula>.
+
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
