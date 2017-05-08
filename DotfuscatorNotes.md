@@ -29,6 +29,6 @@ None. Everything we want to protect is protected!
 
 # Dotfuscator input directories
 
-Android: `C:\code\BugSweeper\BugSweeper\BugSweeper.Android\obj\Release\DotfuscatorXamarin\dfin`
-iOS: `C:\code\BugSweeper\BugSweeper\BugSweeper.iOS\obj\iPhoneSimulator\Release\DotfuscatorXamarin\dfin`
-UWP: `C:\code\BugSweeper\BugSweeper\BugSweeper.UWP\obj\x64\Release\DotfuscatorXamarin\dfin`
+Android: `C:\code\BugSweeper\BugSweeper\BugSweeper.Android\obj\Release\DotfuscatorXamarin\dfin`  
+iOS: `C:\code\BugSweeper\BugSweeper\BugSweeper.iOS\obj\iPhoneSimulator\Release\DotfuscatorXamarin\dfin`  
+UWP: `C:\code\BugSweeper\BugSweeper\BugSweeper.UWP\obj\x64\Release\DotfuscatorXamarin\dfin`  
