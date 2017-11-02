@@ -2,7 +2,7 @@
 
 <!-- 
   Dotfuscator-Xamarin integration file for MSBuild
-  Version 1.0.0
+  Version 1.1.0
   
   Copyright (c) 2017 PreEmptive Solutions, LLC
   This software is licensed under the terms of the PreEmptive Solutions End User License Agreement 
@@ -55,32 +55,32 @@
   <!--                    -->
   <!-- General properties -->
   <!--                    -->
-  
+
   <Choose>
     <When Condition="'$(DotfuscatorXamarinEnabled)' == 'true'">
-      
+
       <Choose>
         <When Condition="'$(TargetPlatformIdentifier)' == 'UAP'">
           <!-- Properties for Universal Windows projects -->
           <PropertyGroup>
-            
+
             <_DotfuscatorXamarinPlatform>uwp</_DotfuscatorXamarinPlatform>
-            
+
           </PropertyGroup>
         </When>
-        
+
         <Otherwise>
           <!-- Properties for other projects (currently Android or iOS) -->
           <PropertyGroup>
-            
+
             <_DotfuscatorXamarinPlatform>android-or-ios</_DotfuscatorXamarinPlatform>
-            
+
             <PrepareForRunDependsOn>$(PrepareForRunDependsOn);DotfuscatorXamarin_Build</PrepareForRunDependsOn>
-            
+
           </PropertyGroup>
         </Otherwise>
       </Choose>
-    
+
       <!-- Properties for all projects -->
       <PropertyGroup>
 
@@ -100,11 +100,11 @@
         <_DotfuscatorXamarinOutputDirName>dfout</_DotfuscatorXamarinOutputDirName>
         <_DotfuscatorXamarinOutputDir>$(_DotfuscatorXamarinIntermediateDir)\$(_DotfuscatorXamarinOutputDirName)</_DotfuscatorXamarinOutputDir>
         <_DotfuscatorXamarinConfigTemplatePath>$(_DotfuscatorXamarinIntermediateDir)\Template.dfconfig</_DotfuscatorXamarinConfigTemplatePath>
-        
+
         <!-- The Dotfuscator config file expresses paths as relative to the file's directory. MSBuild expresses paths as relative to the project's directory. -->
         <!-- This is why we require the Dotfuscator config to be in the project directory. -->
         <_DotfuscatorXamarinCliProperties>/p:InDir="$(_DotfuscatorXamarinInputDir)",OutDir="$(_DotfuscatorXamarinOutputDir)",ReportDir="$(DotfuscatorXamarinReportDir)"</_DotfuscatorXamarinCliProperties>
-        
+
         <_DotfuscatorXamarinValidationHelpLink>For help, see &lt;https://www.preemptive.com/obfuscating-xamarin-with-dotfuscator&gt;.</_DotfuscatorXamarinValidationHelpLink>
       </PropertyGroup>
     </When>
@@ -113,32 +113,32 @@
   <!--                      -->
   <!-- Pre-build validation -->
   <!--                      -->
-  
+
   <Choose>
-  
+
     <!-- These first items are just for validation; we'll error on the first one. -->
-    
+
     <When Condition="'$(DotfuscatorXamarinCliPath)' == ''">
       <PropertyGroup>
-        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget> 
+        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget>
         <_DotfuscatorXamarinValidationError>When the DotfuscatorXamarinEnabled property is 'true', a path to a Dotfuscator command line interface must be specified in the DotfuscatorXamarinCliPath property.</_DotfuscatorXamarinValidationError>
       </PropertyGroup>
     </When>
     <When Condition="!Exists('$(DotfuscatorXamarinCliPath)')">
       <PropertyGroup>
-        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget> 
+        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget>
         <_DotfuscatorXamarinValidationError>When the DotfuscatorXamarinEnabled property is 'true', the Dotfuscator command line interface specified by DotfuscatorXamarinCliPath ('$(DotfuscatorXamarinCliPath)') must exist.</_DotfuscatorXamarinValidationError>
       </PropertyGroup>
     </When>
     <When Condition="'$(DotfuscatorXamarinConfigFileName)' == ''">
       <PropertyGroup>
-        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget> 
+        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget>
         <_DotfuscatorXamarinValidationError>When the DotfuscatorXamarinEnabled property is 'true', a name of a Dotfuscator config file must be specified in the DotfuscatorXamarinConfigFileName property.</_DotfuscatorXamarinValidationError>
       </PropertyGroup>
     </When>
-    
+
     <!-- The remaining items determine what to do with the config file (use existing? create new? error?). -->
-    
+
     <When Condition="Exists('$(DotfuscatorXamarinConfigFileName)')">
       <!-- Config file exists -->
       <PropertyGroup>
@@ -148,7 +148,7 @@
     <When Condition="'$(DotfuscatorXamarinGenerateNewConfigFile)' == 'false'">
       <!-- Config file doesn't exist, and we're explicitly told to not create one -->
       <PropertyGroup>
-        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget> 
+        <_DotfuscatorXamarinRunTarget>assertion_failure</_DotfuscatorXamarinRunTarget>
         <_DotfuscatorXamarinValidationError>When the DotfuscatorXamarinEnabled property is 'true' and the DotfuscatorXamarinGenerateNewConfigFile property is 'false', the config file specified by DotfuscatorXamarinConfigFileName ('$(DotfuscatorXamarinConfigFileName)') must exist.</_DotfuscatorXamarinValidationError>
       </PropertyGroup>
     </When>
@@ -158,107 +158,107 @@
         <_DotfuscatorXamarinRunTarget>_DotfuscatorXamarin_RunAndCreateConfig</_DotfuscatorXamarinRunTarget>
       </PropertyGroup>
     </Otherwise>
-    
+
   </Choose>
-      
+
   <Target Name="DotfuscatorXamarin_Validate">
 
     <Error Condition="'$(_DotfuscatorXamarinValidationError)' != ''"
-      Text="$(_DotfuscatorXamarinValidationError) $(_DotfuscatorXamarinValidationHelpLink)"
-      File="$(MSBuildProjectFile)"/>
-    
+           Text="$(_DotfuscatorXamarinValidationError) $(_DotfuscatorXamarinValidationHelpLink)"
+           File="$(MSBuildProjectFile)"/>
+
   </Target>
-  
+
   <!--                    -->
   <!-- Build entry points -->
   <!--                    -->
-  
+
   <Target Name="DotfuscatorXamarin_Build"
           DependsOnTargets="DotfuscatorXamarin_Validate;
                             DotfuscatorXamarin_Prepare;
                             DotfuscatorXamarin_Protect;
                             DotfuscatorXamarin_Update"/>
-  
+
   <Target Name="DotfuscatorXamarin_Build_UWP"
           Condition="'$(_DotfuscatorXamarinPlatform)' == 'uwp'"
           BeforeTargets="_ComputeAppxPackagePayload"
           DependsOnTargets="DotfuscatorXamarin_Build"/>
-    
+
   <!--               -->
   <!-- Prepare phase -->
   <!--               -->
-  
+
   <Target Name="DotfuscatorXamarin_Prepare"
           DependsOnTargets="_DotfuscatorXamarin_DetermineFiles;
                             _DotfuscatorXamarin_CopyInputs"/>
-  
+
   <Target Name="_DotfuscatorXamarin_DetermineFiles">
-    
+
     <!-- First, get an item set of files that were copied to the bin directory. -->
     <ItemGroup>
-    
+
       <!-- Mimic _CopyFilesMarkedCopyLocal. -->
-      <_DotfuscatorXamarinOriginalFiles Include="@(ReferenceCopyLocalPaths)" 
-                                 Condition="'$(UseCommonOutputDirectory)' != 'true'">
+      <_DotfuscatorXamarinOriginalFiles Include="@(ReferenceCopyLocalPaths)"
+                                        Condition="'$(UseCommonOutputDirectory)' != 'true'">
         <Destination>%(ReferenceCopyLocalPaths.DestinationSubDirectory)%(ReferenceCopyLocalPaths.Filename)%(ReferenceCopyLocalPaths.Extension)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      
+
       <!-- Mimic _CopyOutOfDateSourceItemsToOutputDirectory. -->
       <_DotfuscatorXamarinOriginalFiles Include="@(_SourceItemsToCopyToOutputDirectory)">
         <Destination>%(_SourceItemsToCopyToOutputDirectory.TargetPath)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      
+
       <!-- Mimic _CopyOutOfDateSourceItemsToOutputDirectoryAlways. -->
       <_DotfuscatorXamarinOriginalFiles Include="@(_SourceItemsToCopyToOutputDirectoryAlways)">
         <Destination>%(_SourceItemsToCopyToOutputDirectoryAlways.TargetPath)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      
+
       <!-- Mimic _CopyAppConfigFile. -->
       <_DotfuscatorXamarinOriginalFiles Include="@(AppConfigWithTargetPath)">
         <Destination>%(AppConfigWithTargetPath.TargetPath)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      
+
       <!-- Mimic _CopyManifestFiles. -->
-      <_DotfuscatorXamarinOriginalFiles Include="@(ApplicationManifest)" 
-                                 Condition="'$(GenerateClickOnceManifests)'=='true' or '$(_DeploymentCopyApplicationManifest)'=='true'">
+      <_DotfuscatorXamarinOriginalFiles Include="@(ApplicationManifest)"
+                                        Condition="'$(GenerateClickOnceManifests)'=='true' or '$(_DeploymentCopyApplicationManifest)'=='true'">
         <Destination>%(ApplicationManifest.Filename)%(ApplicationManifest.Extension)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
       <_DotfuscatorXamarinOriginalFiles Include="@(DeployManifest)"
-                                 Condition="'$(GenerateClickOnceManifests)'=='true'">
+                                        Condition="'$(GenerateClickOnceManifests)'=='true'">
         <Destination>%(DeployManifest.Filename)%(DeployManifest.Extension)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      
+
       <!-- Mimic CopyFilesToOutputDirectory itself. -->
-      <_DotfuscatorXamarinOriginalFiles Include="@(IntermediateAssembly)" 
-                                 Condition="'$(CopyBuildOutputToOutputDirectory)' == 'true' and '$(SkipCopyBuildProduct)' != 'true'">
+      <_DotfuscatorXamarinOriginalFiles Include="@(IntermediateAssembly)"
+                                        Condition="'$(CopyBuildOutputToOutputDirectory)' == 'true' and '$(SkipCopyBuildProduct)' != 'true'">
         <Destination>%(IntermediateAssembly.Filename)%(IntermediateAssembly.Extension)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      <_DotfuscatorXamarinOriginalFiles Include="@(AddModules)" 
-                                 Condition="'@(AddModules)' != ''">
+      <_DotfuscatorXamarinOriginalFiles Include="@(AddModules)"
+                                        Condition="'@(AddModules)' != ''">
         <Destination>%(AddModules.Filename)%(AddModules.Extension)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      <_DotfuscatorXamarinOriginalFiles Include="$(IntermediateOutputPath)$(_SGenDllName)" 
-                                 Condition="'$(_SGenDllCreated)'=='true'">
+      <_DotfuscatorXamarinOriginalFiles Include="$(IntermediateOutputPath)$(_SGenDllName)"
+                                        Condition="'$(_SGenDllCreated)'=='true'">
         <Destination>$(_SGenDllName)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
-      <_DotfuscatorXamarinOriginalFiles Include="@(_DebugSymbolsIntermediatePath)" 
-                                 Condition="'$(_DebugSymbolsProduced)'=='true' and '$(SkipCopyingSymbolsToOutputDirectory)' != 'true' and '$(CopyOutputSymbolsToOutputDirectory)'=='true'">
+      <_DotfuscatorXamarinOriginalFiles Include="@(_DebugSymbolsIntermediatePath)"
+                                        Condition="'$(_DebugSymbolsProduced)'=='true' and '$(SkipCopyingSymbolsToOutputDirectory)' != 'true' and '$(CopyOutputSymbolsToOutputDirectory)'=='true'">
         <Destination>%(_DebugSymbolsIntermediatePath.Filename)%(_DebugSymbolsIntermediatePath.Extension)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
       <!-- Don't bother mimicing XML documentation file copy. -->
-      <_DotfuscatorXamarinOriginalFiles Include="@(IntermediateSatelliteAssembliesWithTargetPath)" 
-                                 Condition="'@(IntermediateSatelliteAssembliesWithTargetPath)' != ''">
+      <_DotfuscatorXamarinOriginalFiles Include="@(IntermediateSatelliteAssembliesWithTargetPath)"
+                                        Condition="'@(IntermediateSatelliteAssembliesWithTargetPath)' != ''">
         <Destination>%(IntermediateSatelliteAssembliesWithTargetPath.Culture)\$(IntermediateSatelliteAssembliesWithTargetPath.TargetName).resources.dll</Destination>
       </_DotfuscatorXamarinOriginalFiles>
       <!-- Don't bother mimicing COM file copy. -->
-      <_DotfuscatorXamarinOriginalFiles Include="@(WinMDExpArtifacts)" 
-                                 Condition="'$(SkipCopyWinMDArtifact)' != 'true' and '@(WinMDExpArtifacts)' != ''">
+      <_DotfuscatorXamarinOriginalFiles Include="@(WinMDExpArtifacts)"
+                                        Condition="'$(SkipCopyWinMDArtifact)' != 'true' and '@(WinMDExpArtifacts)' != ''">
         <Destination>%(WinMDExpArtifacts.Filename)%(WinMDExpArtifacts.Extension)</Destination>
       </_DotfuscatorXamarinOriginalFiles>
       <!-- MDB files will be generated in the _DotfuscatorXamarinFinalOutputDir after we finish building. -->
-      
+
     </ItemGroup>
-    
+
     <ItemGroup>
       <!-- Then, take those files and set them up with their paths for the rest of the Dotfuscator part of the pipeline. -->
       <_DotfuscatorXamarinFiles Include="@(_DotfuscatorXamarinOriginalFiles)">
@@ -271,11 +271,11 @@
         <RelativePath>%(_DotfuscatorXamarinOriginalFiles.Destination)</RelativePath>
       </_DotfuscatorXamarinFiles>
     </ItemGroup>
-    
+
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text="Files seen by Dotfuscator-Xamarin integration: "/>
-    
+
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text=" '%(_DotfuscatorXamarinFiles.Original)' >> '%(_DotfuscatorXamarinFiles.Final)'"/>
@@ -289,24 +289,24 @@
         <Out>%(_DotfuscatorXamarinFiles.Final)</Out>
       </_DotfuscatorXamarinCopyOutputsMap>
     </ItemGroup>
-    
+
   </Target>
-  
+
   <Target Name="_DotfuscatorXamarin_CopyInputs"
           DependsOnTargets="_DotfuscatorXamarin_DetermineFiles"
           Inputs="@(_DotfuscatorXamarinCopyInputsMap)"
           Outputs="@(_DotfuscatorXamarinCopyInputsMap -> '%(Out)')">
-        
+
     <Copy
       SourceFiles="@(_DotfuscatorXamarinCopyInputsMap)"
       DestinationFiles="@(_DotfuscatorXamarinCopyInputsMap -> '%(Out)')"/>
-    
+
   </Target>
-  
+
   <!--               -->
   <!-- Protect phase -->
   <!--               -->
-  
+
   <Target Name="DotfuscatorXamarin_Protect"
           DependsOnTargets="DotfuscatorXamarin_Prepare"
           Inputs="@(_DotfuscatorXamarinFiles -> '%(DfInput)');$(DotfuscatorXamarinConfigFileName)"
@@ -319,18 +319,18 @@
       Directories="$(_DotfuscatorXamarinOutputDir)"/>
 
     <!-- Call appropriate run strategy for Dotfuscator. -->
-    <CallTarget 
+    <CallTarget
       Targets="$(_DotfuscatorXamarinRunTarget)"/>
-                
+
     <!-- Copy and touch other files from dfin to dfout so incremental builds work. -->
     <Copy
       SourceFiles="%(_DotfuscatorXamarinFiles.DfInput)"
       DestinationFiles="%(_DotfuscatorXamarinFiles.DfOutput)"
       Condition="!Exists('%(_DotfuscatorXamarinFiles.DfOutput)')"/>
-    
+
     <Touch
       Files="%(_DotfuscatorXamarinFiles.DfOutput)"/>
-  
+
   </Target>
 
   <Target Name="_DotfuscatorXamarin_RunNormally"
@@ -339,22 +339,22 @@
     <Message
       Importance="high"
       Text="Running Dotfuscator with config file '$(DotfuscatorXamarinConfigFileName)'..."/>
-    
+
     <PropertyGroup>
       <_DotfuscatorXamarinCommand>"$(DotfuscatorXamarinCliPath)" $(_DotfuscatorXamarinCliProperties) "$(DotfuscatorXamarinConfigFileName)"</_DotfuscatorXamarinCommand>
     </PropertyGroup>
-    
+
     <Exec
       Command="$(_DotfuscatorXamarinCommand)"
       StandardOutputImportance="normal"
       StandardErrorImportance="high"/>
-    
+
     <Message
       Importance="high"
       Text="Finished running Dotfuscator."/>
-    
+
   </Target>
-  
+
   <!-- Determines what assemblies should be used for an initial Dotfuscator run
        when there is no existing config file. -->
   <UsingTask TaskName="_DotfuscatorXamarin_DetermineDefaultInputsTask"
@@ -362,73 +362,97 @@
              AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
     <ParameterGroup>
       <!-- Required Inputs -->
-      
-        <!-- The set of files seen by this integration -->
-        <DotfuscatorFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
-      
-        <!-- The assembly being built for this project -->
-        <IntermediateAssembly ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
-      
+
+      <!-- The set of files seen by this integration -->
+      <DotfuscatorFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+
+      <!-- The assembly being built for this project -->
+      <IntermediateAssembly ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+
+      <!-- The project file of the assembly being built for this project-->
+      <OriginalProjectFile ParameterType="System.String" Required="true"/>
       <!-- Outputs -->
-        
-        <!-- The set of files that should be used as inputs to Dotfuscator --> 
-        <DefaultInputs ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
-      
+
+      <!-- The set of files that should be used as inputs to Dotfuscator -->
+      <DefaultInputs ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+
     </ParameterGroup>
     <Task>
+      <Reference Include="System.Xml" />
+      <Reference Include="System.Xml.Linq"/>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Linq" />
+      <Using Namespace="System.Xml.Linq" />
       <Code Type="Fragment" Language="cs">
         <![CDATA[
-var taskImportance = MessageImportance.Low;
-var result = new List<ITaskItem>();
+            var taskImportance = MessageImportance.Low;
+            var result = new List<ITaskItem>();
+            if (IntermediateAssembly.Count() != 1)
+            {
+                throw new ArgumentException(
+                    "Expecting one and only one IntermediateAssembly, had " + IntermediateAssembly.Count(),
+                    "IntermediateAssembly");
+            }
+            var theIntermediateAssembly = IntermediateAssembly.Single();
+            var intermediateAssemblyFilenameAndExtension = theIntermediateAssembly.GetMetadata("Filename") + theIntermediateAssembly.GetMetadata("Extension");
+            Log.LogMessage(taskImportance, "intermediateAssemblyFilenameAndExtension: {0}", intermediateAssemblyFilenameAndExtension);
 
-if (IntermediateAssembly.Count() != 1)
-{
-    throw new ArgumentException(
-        "Expecting one and only one IntermediateAssembly, had " + IntermediateAssembly.Count(),
-        "IntermediateAssembly");
-}
-var theIntermediateAssembly = IntermediateAssembly.Single();
-var intermediateAssemblyFilenameAndExtension = theIntermediateAssembly.GetMetadata("Filename") + theIntermediateAssembly.GetMetadata("Extension");
+            //create queue of project files to check for references, starting with the OriginalProjectFile
+            Queue<String> projectFiles = new Queue<String>();
+            projectFiles.Enqueue(OriginalProjectFile);
+            var ns = "{http://schemas.microsoft.com/developer/msbuild/2003}";
+            while (projectFiles.Count > 0)
+            {
+                //Load the project file
+                var currentProjectFile = projectFiles.Dequeue();
+                Log.LogMessage(taskImportance, "Checking {0} for references", currentProjectFile);
+                XDocument document = XDocument.Load(currentProjectFile);
 
-Log.LogMessage(taskImportance, "intermediateAssemblyFilenameAndExtension: {0}", intermediateAssemblyFilenameAndExtension);
+                //Read the references
+                var references = document.Element(ns + "Project")
+                    .Elements(ns + "ItemGroup").Elements(ns + "ProjectReference")
+                    .Attributes("Include")
+                    .Select(path => path.Value);
 
-result.AddRange(DotfuscatorFiles.Where(file =>
-{
-    Log.LogMessage(taskImportance, "file: {0}", file.ItemSpec);
+                //Add new references found to the queue
+                foreach(var reference in references){   
+                    var projectFile = reference;
+                    
+                    var currentProjectFileDirectory = Path.GetDirectoryName(currentProjectFile);
+                    projectFile = Path.GetFullPath(Path.Combine(currentProjectFileDirectory,projectFile));
+                    
+                    if(File.Exists(projectFile)){
+                       projectFiles.Enqueue(projectFile);
+                    }
+                    
+                    else{
+                       throw new Exception("Unable to find referenced project file: "+projectFile);
+                    }
+                }
 
-    // Include this project's assembly
-    var thisFilesFilenameAndExtension = file.GetMetadata("FilenameAndExtension");
-    Log.LogMessage(taskImportance, " thisFilesFilenameAndExtension: {0}", thisFilesFilenameAndExtension);
-    if (intermediateAssemblyFilenameAndExtension.Equals(thisFilesFilenameAndExtension, StringComparison.InvariantCultureIgnoreCase))
-    {
-        Log.LogMessage(taskImportance, " true");
-        return true;
-    }
-
-    // And include all other assemblies that are based on project references
-    // (i.e., don't include framework assemblies, third-party libraries, or NuGet packages).
-    // Check for ProjectReferenceOriginalItemSpec instead of Project because PDBs also define Project.
-    var referenceItemSpec = file.GetMetadata("ProjectReferenceOriginalItemSpec");
-    Log.LogMessage(taskImportance, " referenceItemSpec: {0}", referenceItemSpec);
-    if (!String.IsNullOrWhiteSpace(referenceItemSpec))
-    {
-        Log.LogMessage(taskImportance, " true");
-        return true;
-    }
-
-    Log.LogMessage(taskImportance, " false");
-    return false;
-}));
-
-DefaultInputs = result.ToArray();
+                //Add the output assembly for the currentProjectFile to results
+                var assembly = document.Element(ns + "Project")
+                    .Element(ns + "PropertyGroup")
+                    .Element(ns + "AssemblyName")
+                    .Value;
+                var outputType = document.Element(ns + "Project")
+                    .Element(ns + "PropertyGroup")
+                    .Element(ns + "OutputType")
+                    .Value;
+                var extension = (outputType == "Library") ? ".dll" : ".exe";
+                Log.LogMessage(taskImportance, "Adding as input to Dotfuscator: {0}", assembly + extension);
+                result.AddRange(DotfuscatorFiles.Where(file => file.GetMetadata("FilenameAndExtension").Equals(assembly + extension)));
+            }
+            DefaultInputs = result.ToArray();
 ]]>
       </Code>
     </Task>
   </UsingTask>
-  
+
   <PropertyGroup>
     <_DotfuscatorXamarinConfigTemplateLines>
-              <![CDATA[
+      <![CDATA[
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE dotfuscator SYSTEM "http://www.preemptive.com/dotfuscator/dtd/dotfuscator_v2.3.dtd">
 <dotfuscator version="2.3">
@@ -482,28 +506,28 @@ DefaultInputs = result.ToArray();
               ]]>
     </_DotfuscatorXamarinConfigTemplateLines>
   </PropertyGroup>
-  
+
   <!-- Set project properties in the just-generated Dotfuscator config file. -->
   <UsingTask TaskName="_DotfuscatorXamarin_SetProjectPropsTask"
              TaskFactory="CodeTaskFactory"
              AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
     <ParameterGroup>
       <!-- Required Inputs -->
-      
-        <!-- The Dotfuscator config file to read from -->
-        <InputPath ParameterType="System.String" Required="true" />
 
-        <!-- The Dotfuscator config file to write to -->
-        <OutputPath ParameterType="System.String" Required="true" />
+      <!-- The Dotfuscator config file to read from -->
+      <InputPath ParameterType="System.String" Required="true" />
 
-        <!-- The value for the InDir project property -->
-        <InDirValue ParameterType="System.String" Required="true" />
+      <!-- The Dotfuscator config file to write to -->
+      <OutputPath ParameterType="System.String" Required="true" />
 
-        <!-- The value for the OutDir project property -->
-        <OutDirValue ParameterType="System.String" Required="true" />
+      <!-- The value for the InDir project property -->
+      <InDirValue ParameterType="System.String" Required="true" />
 
-        <!-- The value for the ReportDir project property -->
-        <ReportDirValue ParameterType="System.String" Required="true" />
+      <!-- The value for the OutDir project property -->
+      <OutDirValue ParameterType="System.String" Required="true" />
+
+      <!-- The value for the ReportDir project property -->
+      <ReportDirValue ParameterType="System.String" Required="true" />
     </ParameterGroup>
     <Task>
       <Reference Include="System.Xml"/>
@@ -539,37 +563,38 @@ doc.Save(OutputPath);
       </Code>
     </Task>
   </UsingTask>
-  
+
   <Target Name="_DotfuscatorXamarin_RunAndCreateConfig"
           DependsOnTargets="DotfuscatorXamarin_Prepare">
 
     <_DotfuscatorXamarin_DetermineDefaultInputsTask
       DotfuscatorFiles="@(_DotfuscatorXamarinFiles)"
-      IntermediateAssembly="@(IntermediateAssembly)">
-        <Output TaskParameter="DefaultInputs" ItemName="_DotfuscatorXamarinDefaultInputs" />
+      IntermediateAssembly="@(IntermediateAssembly)"
+      OriginalProjectFile="$(MSBuildProjectFullPath)">
+      <Output TaskParameter="DefaultInputs" ItemName="_DotfuscatorXamarinDefaultInputs" />
     </_DotfuscatorXamarin_DetermineDefaultInputsTask>
-    
+
     <WriteLinesToFile
       File="$(_DotfuscatorXamarinConfigTemplatePath)"
-      Lines="$(_DotfuscatorXamarinConfigTemplateLines)" 
+      Lines="$(_DotfuscatorXamarinConfigTemplateLines)"
       Overwrite="true"/>
-          
+
     <Message
       Importance="high"
       Text="Running Dotfuscator with a new config file based on project references..."/>
-    
+
     <PropertyGroup>
       <_DotfuscatorXamarinCommand>"$(DotfuscatorXamarinCliPath)" $(_DotfuscatorXamarinCliProperties) "$(_DotfuscatorXamarinConfigTemplatePath)" /in:@(_DotfuscatorXamarinDefaultInputs->'+"${configdir}\${InDir}\%(FilenameAndExtension)"',',') /makeconfig:"$(DotfuscatorXamarinConfigFileName)"</_DotfuscatorXamarinCommand>
     </PropertyGroup>
-    
+
     <Exec
       Command="$(_DotfuscatorXamarinCommand)"
       StandardOutputImportance="normal"
       StandardErrorImportance="high"
       ContinueOnError="ErrorAndContinue">
-        <Output TaskParameter="ExitCode" PropertyName="_DotfuscatorXamarinExitCode" />
+      <Output TaskParameter="ExitCode" PropertyName="_DotfuscatorXamarinExitCode" />
     </Exec>
-    
+
     <Message
       Importance="high"
       Text="Finished running Dotfuscator with a new config file."/>
@@ -580,44 +605,44 @@ doc.Save(OutputPath);
       InDirValue="$(_DotfuscatorXamarinInputDir)"
       OutDirValue="$(_DotfuscatorXamarinOutputDir)"
       ReportDirValue="$(DotfuscatorXamarinReportDir)"/>
-    
+
     <Warning
       Text="A new Dotfuscator config file was generated because it did not exist: '$(DotfuscatorXamarinConfigFileName)'."
       File="$(MSBuildProjectFile)"/>
-      
+
     <Error Condition="'$(_DotfuscatorXamarinExitCode)' != '0'"
-      Text="The initial run of Dotfuscator failed (exit code '$(_DotfuscatorXamarinExitCode)'). A new Dotfuscator config file, '$(DotfuscatorXamarinConfigFileName)', has been generated, but may not build correctly."
-      File="$(MSBuildProjectFile)"/>
-      
+           Text="The initial run of Dotfuscator failed (exit code '$(_DotfuscatorXamarinExitCode)'). A new Dotfuscator config file, '$(DotfuscatorXamarinConfigFileName)', has been generated, but may not build correctly."
+           File="$(MSBuildProjectFile)"/>
+
   </Target>
-  
+
   <!--              -->
   <!-- Update phase -->
   <!--              -->
-  
+
   <Target Name="DotfuscatorXamarin_Update"
           DependsOnTargets="DotfuscatorXamarin_Protect;
                             _DotfuscatorXamarin_DeletePotentiallyStaleDebugSymbols;
                             _DotfuscatorXamarin_CopyOutputs;
                             _DotfuscatorXamarin_UpdateItems"/>
-  
+
   <Target Name="_DotfuscatorXamarin_DeletePotentiallyStaleDebugSymbols"
           DependsOnTargets="DotfuscatorXamarin_Protect">
 
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text="Removing debugging symbol files from '$(_DotfuscatorXamarinFinalOutputDir)' because they may be out-of-date with respect to Dotfuscator's protection..."/>
-    
+
     <ItemGroup>
       <_DotfuscatorXamarinUnobfuscatedDebugSymbols Include="$(_DotfuscatorXamarinFinalOutputDir)\**\*.pdb"/>
       <_DotfuscatorXamarinUnobfuscatedDebugSymbols Include="$(_DotfuscatorXamarinFinalOutputDir)\**\*.mdb"/>
     </ItemGroup>
-    
+
     <Delete
       Files="@(_DotfuscatorXamarinUnobfuscatedDebugSymbols)"/>
-      
+
   </Target>
-  
+
   <Target Name="_DotfuscatorXamarin_CopyOutputs"
           DependsOnTargets="DotfuscatorXamarin_Protect;
                             _DotfuscatorXamarin_DeletePotentiallyStaleDebugSymbols"
@@ -629,15 +654,15 @@ doc.Save(OutputPath);
       DestinationFiles="@(_DotfuscatorXamarinCopyOutputsMap -> '%(Out)')"/>
 
   </Target>
-    
+
   <Target Name="_DotfuscatorXamarin_UpdateItems"
           DependsOnTargets="DotfuscatorXamarin_Protect;
                             _DotfuscatorXamarin_CopyOutputs">
 
     <!-- A marker target for all UpdateItem targets to attach to via BeforeTargets -->
-    
+
   </Target>
-  
+
   <!-- Joins the Dotfuscator files set (_DotfuscatorXamarinFiles) against an item set, 
        then provides an updated version of the latter set. -->
   <UsingTask TaskName="_DotfuscatorXamarin_UpdateItemsTask"
@@ -645,32 +670,32 @@ doc.Save(OutputPath);
              AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
     <ParameterGroup>
       <!-- Required Inputs -->
-      
-        <!-- The set of files seen by this integration -->
-        <DotfuscatorFiles Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]"  />
-      
-        <!-- The existing item set to match against -->
-        <OldItemSet Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
-      
-        <!-- Semicolon-separated list of metadata keys on DotfuscatorFiles to use when joining -->
-        <MatchOnFileMetadataKeys Required="true" ParameterType="System.String" />
-      
-        <!-- Semicolon-separated list of metadata keys on OldItemSet to use when joining -->
-        <MatchOnItemMetadataKeys Required="true" ParameterType="System.String" />
 
-        <!-- Semicolon-separated list of metadata keys on DotfuscatorFiles to use for the updated entry's identity -->
-        <NewItemIdentityFromFileMetadataKeys Required="true" ParameterType="System.String" />
-      
+      <!-- The set of files seen by this integration -->
+      <DotfuscatorFiles Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]"  />
+
+      <!-- The existing item set to match against -->
+      <OldItemSet Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+
+      <!-- Semicolon-separated list of metadata keys on DotfuscatorFiles to use when joining -->
+      <MatchOnFileMetadataKeys Required="true" ParameterType="System.String" />
+
+      <!-- Semicolon-separated list of metadata keys on OldItemSet to use when joining -->
+      <MatchOnItemMetadataKeys Required="true" ParameterType="System.String" />
+
+      <!-- Semicolon-separated list of metadata keys on DotfuscatorFiles to use for the updated entry's identity -->
+      <NewItemIdentityFromFileMetadataKeys Required="true" ParameterType="System.String" />
+
       <!-- Optional Inputs -->
-      
-        <!-- If set, also add a Metadata with the given name to updated entries, with the value equalling the new identity -->
-        <NewItemMetadataKeyMirrorsIdentity Required="false" ParameterType="System.String" />
-      
+
+      <!-- If set, also add a Metadata with the given name to updated entries, with the value equalling the new identity -->
+      <NewItemMetadataKeyMirrorsIdentity Required="false" ParameterType="System.String" />
+
       <!-- Outputs -->
-        
-        <!-- The updated item set -->
-        <NewItemList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true"/>
-      
+
+      <!-- The updated item set -->
+      <NewItemList ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true"/>
+
     </ParameterGroup>
     <Task>
       <Code Type="Fragment" Language="cs">
@@ -748,7 +773,7 @@ foreach (var item in NewItemList)
       </Code>
     </Task>
   </UsingTask>
-  
+
   <Target Name="_DotfuscatorXamarin_UpdateItem_ReferencePath"
           BeforeTargets="_DotfuscatorXamarin_UpdateItems">
 
@@ -763,31 +788,31 @@ foreach (var item in NewItemList)
     <ItemGroup>
       <_DotfuscatorXamarinNewItems Remove="@(_DotfuscatorXamarinNewItems)" />
     </ItemGroup>
-    
+
     <_DotfuscatorXamarin_UpdateItemsTask
       DotfuscatorFiles="@(_DotfuscatorXamarinFiles)"
       OldItemSet="@(ReferencePath)"
       MatchOnFileMetadataKeys="Original"
       MatchOnItemMetadataKeys="Identity"
       NewItemIdentityFromFileMetadataKeys="FinalAbsolute">
-        <Output TaskParameter="NewItemList" ItemName="_DotfuscatorXamarinNewItems" />
+      <Output TaskParameter="NewItemList" ItemName="_DotfuscatorXamarinNewItems" />
     </_DotfuscatorXamarin_UpdateItemsTask>
 
     <ItemGroup>
       <ReferencePath Remove="@(ReferencePath)" />
       <ReferencePath Include="@(_DotfuscatorXamarinNewItems)" />
     </ItemGroup>
-    
+
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text=" After: @(ReferencePath)"/>
-    
+
   </Target>
-    
+
   <Target Name="_DotfuscatorXamarin_UpdateItem_PackagingOutputs"
           Condition="'$(_DotfuscatorXamarinPlatform)' == 'uwp'"
           BeforeTargets="_DotfuscatorXamarin_UpdateItems">
-    
+
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text="Updating PackagingOutputs item to reflect protected Dotfuscator files..."/>
@@ -805,25 +830,25 @@ foreach (var item in NewItemList)
       MatchOnFileMetadataKeys="Original"
       MatchOnItemMetadataKeys="Identity"
       NewItemIdentityFromFileMetadataKeys="FinalAbsolute">
-        <Output TaskParameter="NewItemList" ItemName="_DotfuscatorXamarinNewItems" />
+      <Output TaskParameter="NewItemList" ItemName="_DotfuscatorXamarinNewItems" />
     </_DotfuscatorXamarin_UpdateItemsTask>
-    
+
     <ItemGroup>
       <PackagingOutputs Remove="@(PackagingOutputs)" />
       <PackagingOutputs Include="@(_DotfuscatorXamarinNewItems)" />
     </ItemGroup>
-    
+
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text=" After: %(PackagingOutputs.ProjectName).%(PackagingOutputs.OutputGroup) : '%(PackagingOutputs.Identity)' -> '%(PackagingOutputs.TargetPath)'"/>
 
   </Target>
-    
+
   <!--                     -->
   <!-- "Late" item updates -->
   <!--                     -->
   <!-- (called at a later stage in the build than DotfuscatorXamarin_Build is) -->
-    
+
   <Target Name="_DotfuscatorXamarin_UpdateItemLate_AllBuiltProjectOutputs"
           Condition="'$(_DotfuscatorXamarinPlatform)' == 'android-or-ios'"
           AfterTargets="GetBuiltProjectOutputRecursive"
@@ -832,7 +857,7 @@ foreach (var item in NewItemList)
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text="Updating AllBuiltProjectOutputs item to reflect protected Dotfuscator files..."/>
-      
+
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text=" Before: '%(AllBuiltProjectOutputs.Identity)' -> '%(AllBuiltProjectOutputs.FinalOutputPath)'"/>
@@ -848,7 +873,7 @@ foreach (var item in NewItemList)
       MatchOnItemMetadataKeys="Filename;Extension"
       NewItemIdentityFromFileMetadataKeys="FinalAbsolute"
       NewItemMetadataKeyMirrorsIdentity="FinalOutputPath">
-        <Output TaskParameter="NewItemList" ItemName="_DotfuscatorXamarinNewItems" />
+      <Output TaskParameter="NewItemList" ItemName="_DotfuscatorXamarinNewItems" />
     </_DotfuscatorXamarin_UpdateItemsTask>
 
     <ItemGroup>
@@ -859,18 +884,18 @@ foreach (var item in NewItemList)
     <Message
       Importance="$(_DotfuscatorXamarinDebugImportance)"
       Text=" After : '%(AllBuiltProjectOutputs.Identity)' -> '%(AllBuiltProjectOutputs.FinalOutputPath)'"/>
-    
+
   </Target>
-  
+
   <!--           -->
   <!-- Non-build -->
   <!--           -->
-  
+
   <Target Name="DotfuscatorXamarin_Clean">
-    
-    <RemoveDir 
+
+    <RemoveDir
       Directories="$(_DotfuscatorXamarinIntermediateDir)"/>
-    
+
   </Target>
-  
+
 </Project>
