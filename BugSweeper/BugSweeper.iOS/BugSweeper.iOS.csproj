@@ -18,7 +18,7 @@ limitations under the License.
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
 
-    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.28.2\dotfuscator.exe</DotfuscatorXamarinCliPath>
+    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.33.0\dotfuscator.exe</DotfuscatorXamarinCliPath>
     <DotfuscatorXamarinConfigFileName>DotfuscatorConfig.xml</DotfuscatorXamarinConfigFileName>
     <DotfuscatorXamarinGenerateNewConfigFile>false</DotfuscatorXamarinGenerateNewConfigFile>
     
@@ -60,6 +60,7 @@ limitations under the License.
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements />
+    <MtouchArch>i386, x86_64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
