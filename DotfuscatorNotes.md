@@ -4,9 +4,9 @@ to see where we noted each point.
 
 # Dotfuscator CLI path
 
-We're using Dotfuscator Professional Edition 4.33.0:
+We're using Dotfuscator Professional Edition 4.99.0:
 
-`C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.33.0\dotfuscator.exe`
+`C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.99.0\dotfuscator.exe`
 
 # Projects and configurations to protect
 
@@ -25,7 +25,7 @@ None. Everything we want to protect is protected!
 
 # Targets file path
 
-`C:\code\BugSweeper\PreEmptive.Dotfuscator.Xamarin.targets`
+`$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\4\PreEmptive.Dotfuscator.Xamarin.targets`
 
 # Dotfuscator input directories
 
