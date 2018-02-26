@@ -18,11 +18,10 @@ limitations under the License.
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-  
-    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.33.0\dotfuscator.exe</DotfuscatorXamarinCliPath>
-    <DotfuscatorXamarinConfigFileName>DotfuscatorConfig.xml</DotfuscatorXamarinConfigFileName>
-    <DotfuscatorXamarinGenerateNewConfigFile>false</DotfuscatorXamarinGenerateNewConfigFile>
 
+    <DotfuscatorCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.99.0\dotfuscator.exe</DotfuscatorCliPath>
+    <DotfuscatorConfigFileName>DotfuscatorConfig.xml</DotfuscatorConfigFileName>
+    <DotfuscatorGenerateNewConfigFile>false</DotfuscatorGenerateNewConfigFile>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{00F33249-4F2C-4FFB-B428-740044D3725B}</ProjectGuid>
@@ -53,8 +52,8 @@ limitations under the License.
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
 
-    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
-
+    <DotfuscatorEnabled>true</DotfuscatorEnabled>
+    
     <OutputPath>bin\ARM\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
@@ -78,9 +77,9 @@ limitations under the License.
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-
-    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
-
+    
+    <DotfuscatorEnabled>true</DotfuscatorEnabled>
+    
     <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
@@ -104,8 +103,8 @@ limitations under the License.
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-
-    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
+    
+    <DotfuscatorEnabled>true</DotfuscatorEnabled>
     
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
@@ -179,5 +178,5 @@ limitations under the License.
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\..\PreEmptive.Dotfuscator.Xamarin.targets"/>
+  <Import Project="$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\4\PreEmptive.Dotfuscator.Xamarin.targets"/>
 </Project>

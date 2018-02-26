@@ -1,6 +1,8 @@
 This is an example repository that demonstrates setting up the Dotfuscator-Xamarin integration
 described here: <https://www.preemptive.com/obfuscating-xamarin-with-dotfuscator>.
 
+>**Note**: If you are using Dotfuscator Community Edition or Dotfuscator Professional 4.33 and earlier, use the [original-dotfuscator-integration](https://github.com/preemptive/protected-bugsweeper/tree/original-dotfuscator-integration) tag.
+
 You can step through this repository's history to see how we set up Dotfuscator's protection
 in an existing Xamarin app. Notes that we took along the way can be found in [DotfuscatorNotes.md](DotfuscatorNotes.md).
 

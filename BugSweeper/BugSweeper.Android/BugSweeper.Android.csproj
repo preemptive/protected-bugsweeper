@@ -18,10 +18,9 @@ limitations under the License.
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     
-    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.33.0\dotfuscator.exe</DotfuscatorXamarinCliPath>
-    <DotfuscatorXamarinConfigFileName>DotfuscatorConfig.xml</DotfuscatorXamarinConfigFileName>
-    <DotfuscatorXamarinGenerateNewConfigFile>false</DotfuscatorXamarinGenerateNewConfigFile>
-    
+    <DotfuscatorCliPath>C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.99.0\dotfuscator.exe</DotfuscatorCliPath>
+    <DotfuscatorConfigFileName>DotfuscatorConfig.xml</DotfuscatorConfigFileName>
+    <DotfuscatorGenerateNewConfigFile>false</DotfuscatorGenerateNewConfigFile>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2ECE01CE-B0FD-4D55-B92F-6A299528748E}</ProjectGuid>
@@ -62,7 +61,7 @@ limitations under the License.
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 
-    <DotfuscatorXamarinEnabled>true</DotfuscatorXamarinEnabled>
+    <DotfuscatorEnabled>true</DotfuscatorEnabled>
     
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -184,5 +183,5 @@ limitations under the License.
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\..\PreEmptive.Dotfuscator.Xamarin.targets"/>
+  <Import Project="$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\4\PreEmptive.Dotfuscator.Xamarin.targets"/>
 </Project>
