@@ -1,6 +1,4 @@
-﻿#define FIX_WINPHONE_BUTTON         // IsEnabled = false doesn't disable button
-
-#pragma warning disable 4014        // for non-await'ed async call
+﻿#pragma warning disable 4014        // for non-await'ed async call
 
 using System;
 using System.Linq;
@@ -111,7 +109,7 @@ namespace BugSweeper
             congratulationsText.Scale = 0;
             congratulationsText.IsVisible = true;
 
-            // Because IsVisible has been false, the text might not have a size yet, 
+            // Because IsVisible has been false, the text might not have a size yet,
             //  in which case Measure will return a size.
             double congratulationsTextWidth = congratulationsText.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Request.Width;
 
@@ -162,12 +160,6 @@ namespace BugSweeper
 
         void OnplayAgainButtonClicked(object sender, object EventArgs)
         {
-#if FIX_WINPHONE_BUTTON
-
-            if (Device.OS == TargetPlatform.WinPhone && !((Button)sender).IsEnabled)
-                return;
-
-#endif
             PrepareForNewGame();
         }
     }
