@@ -5,6 +5,7 @@
   <global>
     <input_management>automatic</input_management>
     <option>monocompat</option>
+    <option>suppressildasm</option>
   </global>
   <input>
     <loadpaths />
@@ -19,14 +20,12 @@
       <inputassembly refid="e58d4a60-45de-474e-a393-43fce3617aa7">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeper.dll" />
       </inputassembly>
       <inputassembly refid="9c2a7466-74bc-40a6-a2e7-dacf5b16e1a6">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeperTile.dll" />
       </inputassembly>
@@ -36,12 +35,13 @@
     <file dir="${configdir}\Dotfuscated" />
   </output>
   <renaming>
+    <option>enhancedOI</option>
     <option>xmlserialization</option>
     <excludelist>
       <type name="BugSweeper.Board">
         <propertymember name="FlaggedTileCount" />
       </type>
-      <type name="BugSweeper.BugSweeperPage" excludetype="false">
+      <type name="BugSweeper.BugSweeperPage">
         <method name="InitializeComponent" signature="void()" />
         <method name="OnBoardContentViewSizeChanged" signature="void(object, System.EventArgs)" />
         <method name="OnMainContentViewSizeChanged" signature="void(object, System.EventArgs)" />
@@ -66,6 +66,19 @@
     </referencerulelist>
   </renaming>
   <controlflow level="high" />
+  <stringencrypt>
+    <includelist>
+      <assembly>
+        <file dir="${configdir}\obj\x86\Release" name="BugSweeper.WinUniversal.exe" />
+      </assembly>
+      <assembly>
+        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeper.dll" />
+      </assembly>
+      <assembly>
+        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeperTile.dll" />
+      </assembly>
+    </includelist>
+  </stringencrypt>
   <removal>
     <option>disable</option>
     <removalreport overwrite="true">
