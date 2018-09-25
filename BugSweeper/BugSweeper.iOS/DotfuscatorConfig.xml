@@ -5,6 +5,7 @@
   <global>
     <input_management>automatic</input_management>
     <option>monocompat</option>
+    <option>suppressildasm</option>
   </global>
   <input>
     <loadpaths />
@@ -19,14 +20,12 @@
       <inputassembly refid="d11f1949-3abb-4553-b862-0a6399037576">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeper.dll" />
       </inputassembly>
       <inputassembly refid="c31050f6-f21c-4bba-8777-d59e67e3594c">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeperTile.dll" />
       </inputassembly>
@@ -36,11 +35,13 @@
     <file dir="${configdir}\Dotfuscated" />
   </output>
   <renaming>
+    <option>enhancedOI</option>
     <option>xmlserialization</option>
     <excludelist>
       <type name="BugSweeper.Board" excludetype="false">
         <propertymember name="FlaggedTileCount" />
       </type>
+      <type name="BugSweeper.BugSweeperPage" />
     </excludelist>
     <mapping>
       <mapoutput overwrite="true">
@@ -59,6 +60,19 @@
     </referencerulelist>
   </renaming>
   <controlflow level="high" />
+  <stringencrypt>
+    <includelist>
+      <assembly>
+        <file dir="${configdir}\obj\iPhoneSimulator\Release" name="FormsTemplateiOS.exe" />
+      </assembly>
+      <assembly>
+        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeper.dll" />
+      </assembly>
+      <assembly>
+        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeperTile.dll" />
+      </assembly>
+    </includelist>
+  </stringencrypt>
   <removal>
     <option>disable</option>
     <removalreport overwrite="true">
