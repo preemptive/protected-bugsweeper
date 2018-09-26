@@ -40,6 +40,15 @@
   </output>
   <renaming>
     <option>xmlserialization</option>
+    <excludelist>
+      <type name="BugSweeper.Board" excludetype="false">
+        <propertymember name="BugCount" />
+        <propertymember name="FlaggedTileCount" />
+      </type>
+      <type name="BugSweeper.BugSweeperPage">
+        <field name="board" signature="BugSweeper.Board" />
+      </type>
+    </excludelist>
     <mapping>
       <mapoutput overwrite="true">
         <file dir="${configdir}\${ReportDir}" name="Renaming.xml" />
