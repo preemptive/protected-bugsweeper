@@ -22,14 +22,12 @@
       <inputassembly refid="7bfeea69-3937-451e-bc25-3c26c74a7323">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\${InDir}" name="BugSweeper.dll" />
       </inputassembly>
       <inputassembly refid="0715f363-39dd-4bc4-a3d3-a1225226104e">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\${InDir}" name="BugSweeperTile.dll" />
       </inputassembly>
@@ -44,6 +42,7 @@
       <type name="BugSweeper.Board" excludetype="false">
         <propertymember name="FlaggedTileCount" />
       </type>
+      <type name="BugSweeper.BugSweeperPage" />
     </excludelist>
     <mapping>
       <mapoutput overwrite="true">
