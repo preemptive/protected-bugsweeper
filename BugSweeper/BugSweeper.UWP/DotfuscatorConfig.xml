@@ -40,6 +40,18 @@
   </output>
   <renaming>
     <option>xmlserialization</option>
+    <excludelist>
+      <type name="BugSweeper.Board">
+        <propertymember name="FlaggedTileCount" />
+      </type>
+      <type name="BugSweeper.BugSweeperPage" excludetype="false">
+        <method name="InitializeComponent" signature="void()" />
+        <method name="OnBoardContentViewSizeChanged" signature="void(object, System.EventArgs)" />
+        <method name="OnMainContentViewSizeChanged" signature="void(object, System.EventArgs)" />
+        <method name="OnplayAgainButtonClicked" signature="void(object, object)" />
+        <field name="board" signature="BugSweeper.Board" />
+      </type>
+    </excludelist>
     <mapping>
       <mapoutput overwrite="true">
         <file dir="${configdir}\${ReportDir}" name="Renaming.xml" />
