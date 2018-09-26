@@ -22,14 +22,12 @@
       <inputassembly refid="dcc0d68f-1a0b-4f7f-a9fb-abe7f1c48b1e">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\${InDir}" name="BugSweeper.dll" />
       </inputassembly>
       <inputassembly refid="86762d82-11dd-413d-b00e-1b522f48e5be">
         <option>honoroas</option>
         <option>stripoa</option>
-        <option>library</option>
         <option>transformxaml</option>
         <file dir="${configdir}\${InDir}" name="BugSweeperTile.dll" />
       </inputassembly>
@@ -44,7 +42,7 @@
       <type name="BugSweeper.Board">
         <propertymember name="FlaggedTileCount" />
       </type>
-      <type name="BugSweeper.BugSweeperPage" excludetype="false">
+      <type name="BugSweeper.BugSweeperPage">
         <method name="InitializeComponent" signature="void()" />
         <method name="OnBoardContentViewSizeChanged" signature="void(object, System.EventArgs)" />
         <method name="OnMainContentViewSizeChanged" signature="void(object, System.EventArgs)" />
