@@ -60,6 +60,13 @@ The Root Check in this sample is placed on the `OnSingleTap` method and configur
 After configuring the root check, you can test BugSweeper on a rooted device or emulator and see that when you try to flag a bug, the app will now exit.
 See our [Protected-TodoAzureAuth](https://github.com/preemptive/Protected-TodoAzureAuth) sample for more detail on adding Root Checks to Xamarin apps.
 
+[Tamper Checks](https://www.preemptive.com/dotfuscator/pro/userguide/en/protection_checks_tamper.html) can be added to BugSweeper.Android to prevent running a modified app.
+The Tamper Check in this sample is placed on `NewGameInitialize` method and is configured to make the app exit when that method is called in an apk that has been tampered with.
+The Tamper Check depends on the apk being signed, so app signing has been setup with a sample keystore included alongside the Android project.
+After configuring the Tamper Check, you can test Bugsweeper by re-signing with another certificate.
+This simulates an attacker making code changes and resigning with their own certificate.
+You will then see upon starting, the app will exit.
+
 The Renaming obfuscation of the BugSweeper can be made stronger by turning off library mode.
 In the *Input* tab of the Dotfuscator Config Editor tab expand the `BugSweeper.dll` and `BugSweeperTile.dll` nodes and uncheck *Library*.
 If you save the config, build in Visual Studio, and run the app, you will see that another renaming exclusion is needed after disabling library mode on these assemblies.

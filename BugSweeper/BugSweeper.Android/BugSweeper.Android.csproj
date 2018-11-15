@@ -16,6 +16,11 @@
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <NuGetPackageImportStamp>42f058a4</NuGetPackageImportStamp>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>bugsweeper.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>sample_password</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>bugsweeper</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>sample_password</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -98,12 +103,13 @@
   <!-- Set build properties for Dotfuscator -->
   <PropertyGroup>
 
-      <!-- Generate a default Dotfuscator config file (DotfuscatorConfig.xml) -->
-      <DotfuscatorGenerateConfigFileIfMissing>false</DotfuscatorGenerateConfigFileIfMissing>
+    <!-- Generate a default Dotfuscator config file (DotfuscatorConfig.xml) -->
+    <DotfuscatorGenerateConfigFileIfMissing>false</DotfuscatorGenerateConfigFileIfMissing>
 
-      <!-- Enable Dotfuscator for Release -->
-      <DotfuscatorEnabled Condition="'$(Configuration)' == 'Release'">true</DotfuscatorEnabled>
+    <!-- Enable Dotfuscator for Release -->
+    <DotfuscatorEnabled Condition="'$(Configuration)' == 'Release'">true</DotfuscatorEnabled>
 
+    <DotfuscatorAndroidSigningCertFingerprint>BC:10:4C:59:67:31:D2:A9:79:34:66:3C:4F:5A:67:F1:AB:82:50:52</DotfuscatorAndroidSigningCertFingerprint>
   </PropertyGroup>
 
   <!-- Import the Dotfuscator MSBuild targets last -->

@@ -104,6 +104,25 @@
         <property name="ExtendedKeyMethodArguments" value="" />
       </propertylist>
     </extattribute>
+    <extattribute name="PreEmptive.Attributes.TamperCheckAttribute">
+      <codetransformlist>
+        <codetransform name="analytics" />
+      </codetransformlist>
+      <type name="BugSweeper.Board">
+        <method name="NewGameInitialize" signature="void()" />
+      </type>
+      <propertylist>
+        <property name="Action" value="Exception" />
+        <property name="ActionProbability" value="1" />
+        <property name="ApplicationNotificationSinkName" value="" />
+        <property name="ApplicationNotificationSinkOwner" value="" />
+        <property name="ApplicationNotificationSinkElement" value="None" />
+        <property name="ExtendedKeySourceName" value="" />
+        <property name="ExtendedKeySourceOwner" value="" />
+        <property name="ExtendedKeySourceElement" value="None" />
+        <property name="ExtendedKeyMethodArguments" value="" />
+      </propertylist>
+    </extattribute>
   </extattributes>
   <smartobfuscation>
     <smartobfuscationreport verbosity="all" overwrite="true">
