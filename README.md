@@ -8,7 +8,7 @@ You can also review the commit history of this branch to see how these steps wer
 
 # Protecting BugSweeper
 
-First you'll need to download the a custom set of MSBuild targets and tasks, for Dotfuscator: [Download](http://files.preemptive.com.s3.amazonaws.com/blog/Xamarin/PreEmptive.Dotfuscator.Xamarin_v1.4.0.zip).
+First you'll need to download the a custom set of MSBuild targets and tasks, for Dotfuscator: [Download](https://www.preemptive.com/dotfuscator/ce/downloads/PreEmptive.Dotfuscator.Xamarin.zip).
 
 We recommend saving the extracted contents in your app's solution directory and adding it to your local source control, as it will be required for building your projects.
 
