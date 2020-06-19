@@ -27,6 +27,10 @@ steps:
     projectFile: '**/*droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'debug.keystore'
     
 - task: AndroidSigning@3
   inputs:
