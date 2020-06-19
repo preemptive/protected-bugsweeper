@@ -1,0 +1,52 @@
+# Xamarin.Android
+# Build a Xamarin.Android project.
+# Add steps that test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
+
+trigger:
+  branches:
+    include:
+    - protected-community
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
+steps:
+- task: NuGetToolInstaller@1
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+    vstsFeed: 'cb1db3a7-0727-428c-ba8e-8bc41adfe752'
+
+- task: ProvisionDotfuscatorCE@1
+  inputs:
+    dotfuscatorSN: '311844-391'
+    dotfuscatorDistro: '16'
+
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '**/*droid*.csproj'
+    outputDirectory: '$(outputDirectory)'
+    configuration: '$(buildConfiguration)'
+
+- task: ProtectWithDotfuscatorCE@1
+  inputs:
+    configFile: 'BugSweeper\BugSweeper.Android\DotfuscatorConfig.xml'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'debug.keystore'
+    
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'debug.keystore'
+    apksignerKeystorePassword: 'android'
+    apksignerKeystoreAlias: 'androiddebugkey'
+    apksignerKeyPassword: 'android'
