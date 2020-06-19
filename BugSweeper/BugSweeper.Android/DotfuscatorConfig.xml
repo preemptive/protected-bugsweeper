@@ -2,8 +2,8 @@
 <!DOCTYPE dotfuscator SYSTEM "http://www.preemptive.com/dotfuscator/dtd/dotfuscator_v2.4.dtd">
 <dotfuscator version="2.3">
   <propertylist>
-    <property name="InDir" value="obj\\Release\MonoAndroid81\DotfuscatorXamarin\dfin" />
-    <property name="OutDir" value="obj\\Release\MonoAndroid81\DotfuscatorXamarin\dfout" />
+    <property name="InDir" value="obj\Release\90\DotfuscatorXamarin\dfin" />
+    <property name="OutDir" value="obj\Release\90\DotfuscatorXamarin\dfout" />
     <property name="ReportDir" value="DotfuscatorReports\Release" />
   </propertylist>
   <global>
