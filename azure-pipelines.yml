@@ -7,7 +7,7 @@ trigger:
 - protected-community
 
 pool:
-  vmImage: 'macos-latest'
+  vmImage: 'windows-latest'
 
 variables:
   buildConfiguration: 'Release'
