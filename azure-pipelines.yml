@@ -24,7 +24,7 @@ steps:
 
 - task: ProvisionDotfuscatorCE@1
   inputs:
-    dotfuscatorSN: 'S/N: 311844-391'
+    dotfuscatorSN: '311844-391'
     dotfuscatorDistro: '16'
 
 - task: XamarinAndroid@1
