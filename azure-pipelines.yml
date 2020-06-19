@@ -35,7 +35,7 @@ steps:
 
 - task: ProtectWithDotfuscatorCE@1
   inputs:
-    configFile: '''**/*DotfuscatorConfig*.xml'''
+    configFile: 'BugSweeper\BugSweeper.Android\DotfuscatorConfig.xml'
 
 - task: DownloadSecureFile@1
   inputs:
