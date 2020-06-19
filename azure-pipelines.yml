@@ -22,11 +22,20 @@ steps:
     feedsToUse: 'select'
     vstsFeed: 'cb1db3a7-0727-428c-ba8e-8bc41adfe752'
 
+- task: ProvisionDotfuscatorCE@1
+  inputs:
+    dotfuscatorSN: 'S/N: 311844-391'
+    dotfuscatorDistro: '16'
+
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+
+- task: ProtectWithDotfuscatorCE@1
+  inputs:
+    configFile: '''**/*DotfuscatorConfig*.xml'''
 
 - task: DownloadSecureFile@1
   inputs:
