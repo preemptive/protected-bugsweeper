@@ -4,7 +4,9 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
 
 trigger:
-- protected-community
+  branches:
+    include:
+    - protected-community
 
 pool:
   vmImage: 'windows-latest'
