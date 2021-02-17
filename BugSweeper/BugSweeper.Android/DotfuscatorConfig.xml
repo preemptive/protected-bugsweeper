@@ -8,14 +8,16 @@
     <option>suppressildasm</option>
   </global>
   <input>
-    <loadpaths />
+    <loadpaths>
+      <file dir="${configdir}/bin/Release" />
+    </loadpaths>
     <asmlist>
       <inputassembly refid="7e25c3d4-5655-4eae-9e00-abd6bb558c30">
         <option>honoroas</option>
         <option>stripoa</option>
         <option>library</option>
         <option>transformxaml</option>
-        <file dir="${configdir}\obj\Release\MonoAndroid81" name="BugSweeper.Android.dll" />
+        <file dir="${configdir}\obj\Release\110" name="BugSweeper.Android.dll" />
       </inputassembly>
       <inputassembly refid="d12a284b-9c8d-45f9-ba04-a26f96792ef0">
         <option>honoroas</option>
@@ -63,13 +65,13 @@
   <stringencrypt>
     <includelist>
       <assembly>
-        <file dir="${configdir}\obj\Release\MonoAndroid81" name="BugSweeper.Android.dll" />
+        <file dir="" name="BugSweeper.Android.dll" />
       </assembly>
       <assembly>
-        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeper.dll" />
+        <file dir="" name="BugSweeper.dll" />
       </assembly>
       <assembly>
-        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeperTile.dll" />
+        <file dir="" name="BugSweeperTile.dll" />
       </assembly>
     </includelist>
   </stringencrypt>
@@ -80,15 +82,9 @@
     </removalreport>
     <referencerulelist />
   </removal>
-  <sos mergeruntime="true">
-    <option>version:v4</option>
-    <option>dontsendtamper</option>
-  </sos>
+  <sos />
   <extattributes>
     <extattribute name="PreEmptive.Attributes.RootCheckAttribute">
-      <codetransformlist>
-        <codetransform name="analytics" />
-      </codetransformlist>
       <type name="BugSweeper.Tile">
         <method name="OnSingleTap" signature="void(object, object)" />
       </type>
@@ -98,16 +94,9 @@
         <property name="ApplicationNotificationSinkName" value="" />
         <property name="ApplicationNotificationSinkOwner" value="" />
         <property name="ApplicationNotificationSinkElement" value="None" />
-        <property name="ExtendedKeySourceName" value="" />
-        <property name="ExtendedKeySourceOwner" value="" />
-        <property name="ExtendedKeySourceElement" value="None" />
-        <property name="ExtendedKeyMethodArguments" value="" />
       </propertylist>
     </extattribute>
     <extattribute name="PreEmptive.Attributes.TamperCheckAttribute">
-      <codetransformlist>
-        <codetransform name="analytics" />
-      </codetransformlist>
       <type name="BugSweeper.Board">
         <method name="NewGameInitialize" signature="void()" />
       </type>
@@ -117,10 +106,6 @@
         <property name="ApplicationNotificationSinkName" value="" />
         <property name="ApplicationNotificationSinkOwner" value="" />
         <property name="ApplicationNotificationSinkElement" value="None" />
-        <property name="ExtendedKeySourceName" value="" />
-        <property name="ExtendedKeySourceOwner" value="" />
-        <property name="ExtendedKeySourceElement" value="None" />
-        <property name="ExtendedKeyMethodArguments" value="" />
       </propertylist>
     </extattribute>
   </extattributes>

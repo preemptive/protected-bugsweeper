@@ -118,6 +118,6 @@
   </PropertyGroup>
 
   <!-- Import the Dotfuscator MSBuild targets last -->
-  <Import Project="$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\4\PreEmptive.Dotfuscator.Common.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\6\PreEmptive.Dotfuscator.Common.targets" />
 
 </Project>
