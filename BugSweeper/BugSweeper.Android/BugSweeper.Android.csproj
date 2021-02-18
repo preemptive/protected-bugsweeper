@@ -43,6 +43,8 @@
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
@@ -100,13 +102,13 @@
     <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.2.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-   <PropertyGroup>
+  <PropertyGroup>
     <DotfuscatorXamarinConfigFileName>DotfuscatorConfig.xml</DotfuscatorXamarinConfigFileName>
-    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\PreEmptiveSolutions\DotfuscatorCE\dotfuscatorCLI.exe</DotfuscatorXamarinCliPath>
+    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\PreEmptiveSolutions\DotfuscatorCE\dotfuscatorCLI.exe</DotfuscatorXamarinCliPath>
     <!-- Generate a default Dotfuscator config file (DotfuscatorConfig.xml) -->
     <DotfuscatorXamarinGenerateNewConfigFile>false</DotfuscatorXamarinGenerateNewConfigFile>
     <!-- Enable Dotfuscator for Release -->
     <DotfuscatorXamarinEnabled Condition="'$(Configuration)' == 'Release'">true</DotfuscatorXamarinEnabled>
   </PropertyGroup>
-  <Import Project="../../PreEmptive.Dotfuscator.Xamarin/PreEmptive.Dotfuscator.Xamarin.targets"/>
+  <Import Project="../../PreEmptive.Dotfuscator.Xamarin/PreEmptive.Dotfuscator.Xamarin.targets" />
 </Project>

@@ -11,7 +11,7 @@
     <AssemblyName>BugSweeper.WinUniversal</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
@@ -89,10 +89,10 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="2.5.0-prerelease.201202003" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -143,11 +143,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
     <DotfuscatorXamarinConfigFileName>DotfuscatorConfig.xml</DotfuscatorXamarinConfigFileName>
-    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\PreEmptiveSolutions\DotfuscatorCE\dotfuscatorCLI.exe</DotfuscatorXamarinCliPath>
+    <DotfuscatorXamarinCliPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\PreEmptiveSolutions\DotfuscatorCE\dotfuscatorCLI.exe</DotfuscatorXamarinCliPath>
     <!-- Generate a default Dotfuscator config file (DotfuscatorConfig.xml) -->
     <DotfuscatorXamarinGenerateNewConfigFile>false</DotfuscatorXamarinGenerateNewConfigFile>
     <!-- Enable Dotfuscator for Release -->
     <DotfuscatorXamarinEnabled Condition="'$(Configuration)' == 'Release'">true</DotfuscatorXamarinEnabled>
   </PropertyGroup>
-  <Import Project="../../PreEmptive.Dotfuscator.Xamarin/PreEmptive.Dotfuscator.Xamarin.targets"/>
+  <Import Project="../../PreEmptive.Dotfuscator.Xamarin/PreEmptive.Dotfuscator.Xamarin.targets" />
 </Project>
