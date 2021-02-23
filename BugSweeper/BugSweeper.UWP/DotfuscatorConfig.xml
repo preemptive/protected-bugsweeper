@@ -8,7 +8,9 @@
     <option>suppressildasm</option>
   </global>
   <input>
-    <loadpaths />
+    <loadpaths>
+      <file dir="${configdir}/bin/x86/Release" />
+    </loadpaths>
     <asmlist>
       <inputassembly refid="ac34af9d-e241-4df4-b04b-efd80b624c9d">
         <option>honoroas</option>
@@ -69,13 +71,13 @@
   <stringencrypt>
     <includelist>
       <assembly>
-        <file dir="${configdir}\obj\x86\Release" name="BugSweeper.WinUniversal.exe" />
+        <file dir="" name="BugSweeper.WinUniversal.exe" />
       </assembly>
       <assembly>
-        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeper.dll" />
+        <file dir="" name="BugSweeper.dll" />
       </assembly>
       <assembly>
-        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeperTile.dll" />
+        <file dir="" name="BugSweeperTile.dll" />
       </assembly>
     </includelist>
   </stringencrypt>
@@ -86,10 +88,7 @@
     </removalreport>
     <referencerulelist />
   </removal>
-  <sos mergeruntime="true">
-    <option>version:v4</option>
-    <option>dontsendtamper</option>
-  </sos>
+  <sos />
   <smartobfuscation>
     <smartobfuscationreport verbosity="all" overwrite="true">
       <file dir="${configdir}\DotfuscatorReports\${configuration}\${platform}" name="SmartObfuscation.xml" />

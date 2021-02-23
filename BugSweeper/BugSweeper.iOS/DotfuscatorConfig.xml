@@ -8,14 +8,16 @@
     <option>suppressildasm</option>
   </global>
   <input>
-    <loadpaths />
+    <loadpaths>
+      <file dir="${configdir}/bin/iPhone/Release" />
+    </loadpaths>
     <asmlist>
       <inputassembly refid="ba85d28e-167b-41b5-b1ec-54ad098d9b5e">
         <option>honoroas</option>
         <option>stripoa</option>
         <option>library</option>
         <option>transformxaml</option>
-        <file dir="${configdir}\obj\iPhoneSimulator\Release" name="FormsTemplateiOS.exe" />
+        <file dir="${configdir}\obj\iPhone\Release" name="FormsTemplateiOS.exe" />
       </inputassembly>
       <inputassembly refid="d11f1949-3abb-4553-b862-0a6399037576">
         <option>honoroas</option>
@@ -63,13 +65,13 @@
   <stringencrypt>
     <includelist>
       <assembly>
-        <file dir="${configdir}\obj\iPhoneSimulator\Release" name="FormsTemplateiOS.exe" />
+        <file dir="" name="FormsTemplateiOS.exe" />
       </assembly>
       <assembly>
-        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeper.dll" />
+        <file dir="" name="BugSweeper.dll" />
       </assembly>
       <assembly>
-        <file dir="${configdir}\..\BugSweeper\bin\Release\netstandard2.0" name="BugSweeperTile.dll" />
+        <file dir="" name="BugSweeperTile.dll" />
       </assembly>
     </includelist>
   </stringencrypt>
@@ -80,10 +82,7 @@
     </removalreport>
     <referencerulelist />
   </removal>
-  <sos mergeruntime="true">
-    <option>version:v4</option>
-    <option>dontsendtamper</option>
-  </sos>
+  <sos />
   <smartobfuscation>
     <smartobfuscationreport verbosity="all" overwrite="true">
       <file dir="${configdir}\DotfuscatorReports\${configuration}\${platform}" name="SmartObfuscation.xml" />

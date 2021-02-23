@@ -89,10 +89,10 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="2.5.0" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -140,11 +140,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- Set build properties for Dotfuscator -->
   <PropertyGroup>
-      <!-- Generate a default Dotfuscator config file (DotfuscatorConfig.xml) -->
-      <DotfuscatorGenerateConfigFileIfMissing>false</DotfuscatorGenerateConfigFileIfMissing>
-      <!-- Enable Dotfuscator for Release -->
-      <DotfuscatorEnabled Condition="'$(Configuration)' == 'Release'">true</DotfuscatorEnabled>
+    <!-- Generate a default Dotfuscator config file (DotfuscatorConfig.xml) -->
+    <DotfuscatorGenerateConfigFileIfMissing>false</DotfuscatorGenerateConfigFileIfMissing>
+    <!-- Enable Dotfuscator for Release -->
+    <DotfuscatorEnabled Condition="'$(Configuration)' == 'Release'">true</DotfuscatorEnabled>
   </PropertyGroup>
   <!-- Import the Dotfuscator MSBuild targets last -->
-  <Import Project="$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\4\PreEmptive.Dotfuscator.Common.targets"/>
+  <Import Project="$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\6\PreEmptive.Dotfuscator.Common.targets" />
 </Project>
